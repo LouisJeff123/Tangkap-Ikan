@@ -14,38 +14,41 @@
         }
     </style>
 </head>
-<body class="bg-indigo-900 text-white min-h-screen flex flex-col items-center justify-center font-sans overflow-hidden">
+<!-- Ubah min-h-screen menjadi h-[100dvh] dan sesuaikan flex container -->
+<body class="bg-indigo-900 text-white h-[100dvh] flex flex-col items-center justify-between font-sans overflow-hidden">
 
-    <div class="text-center mb-4 z-10">
-        <h1 class="text-3xl font-bold text-yellow-400 drop-shadow-md">🐱 Tangkap Ikan! 🐟</h1>
-        <p class="text-sm text-indigo-200 mt-1">Geser kucing untuk menangkap ikan. Hindari bom!</p>
+    <!-- Header dengan ukuran responsif (mengecil di HP, membesar di PC) -->
+    <div class="text-center my-2 sm:my-4 z-10 shrink-0 px-2">
+        <h1 class="text-2xl sm:text-3xl font-bold text-yellow-400 drop-shadow-md">🐱 Tangkap Ikan! 🐟</h1>
+        <p class="text-xs sm:text-sm text-indigo-200 mt-1">Geser kucing untuk menangkap ikan. Hindari bom!</p>
     </div>
 
-    <!-- Ubah max-w-md menjadi max-w-3xl agar layarnya lebih lebar -->
-    <div id="gameContainer" class="relative w-full max-w-3xl mx-auto h-[75vh] max-h-[800px]">
+    <!-- Container Game dibikin FULL WIDTH (w-full tanpa max-width) biar mentok kiri kanan di PC -->
+    <div id="gameContainer" class="relative w-full flex-1 bg-indigo-800 border-y-4 border-indigo-500 shadow-2xl overflow-hidden">
         <!-- UI Overlay -->
-        <div class="absolute top-4 left-4 z-10 text-xl font-bold text-white drop-shadow-md">
+        <div class="absolute top-2 sm:top-4 left-4 sm:left-8 z-10 text-lg sm:text-xl font-bold text-white drop-shadow-md">
             Skor: <span id="scoreDisplay">0</span>
         </div>
-        <div class="absolute top-4 right-4 z-10 text-xl font-bold text-white drop-shadow-md">
+        <div class="absolute top-2 sm:top-4 right-4 sm:right-8 z-10 text-lg sm:text-xl font-bold text-white drop-shadow-md">
             Nyawa: <span id="livesDisplay">❤️❤️❤️</span>
         </div>
 
         <!-- Layar Mulai / Game Over -->
-        <div id="menuScreen" class="absolute inset-0 bg-black bg-opacity-70 z-20 flex flex-col items-center justify-center rounded-lg">
-            <h2 id="menuTitle" class="text-4xl font-extrabold text-white mb-2 shadow-black drop-shadow-lg">Siap Main?</h2>
-            <p id="finalScore" class="text-xl text-yellow-300 mb-6 hidden font-bold">Skor Akhir: 0</p>
-            <button id="startBtn" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-indigo-900 font-bold rounded-full text-xl transition transform hover:scale-105 shadow-lg">
+        <div id="menuScreen" class="absolute inset-0 bg-black bg-opacity-70 z-20 flex flex-col items-center justify-center p-4 text-center">
+            <h2 id="menuTitle" class="text-3xl sm:text-4xl font-extrabold text-white mb-2 shadow-black drop-shadow-lg">Siap Main?</h2>
+            <p id="finalScore" class="text-lg sm:text-xl text-yellow-300 mb-6 hidden font-bold">Skor Akhir: 0</p>
+            <button id="startBtn" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-indigo-900 font-bold rounded-full text-lg sm:text-xl transition transform hover:scale-105 shadow-lg">
                 Mulai Game
             </button>
         </div>
 
-        <!-- Canvas Game -->
-        <canvas id="gameCanvas" class="bg-indigo-800 rounded-lg shadow-2xl border-4 border-indigo-500 w-full h-full block"></canvas>
+        <!-- Canvas Game (Pindahkan border dan bg ke container agar rapi di semua layar) -->
+        <canvas id="gameCanvas" class="w-full h-full block touch-none"></canvas>
     </div>
 
-    <div class="mt-4 text-xs text-indigo-300 text-center px-4">
-        *Mainkan dengan mouse (geser kursor) atau sentuh dan geser layar di HP.
+    <!-- Footer dengan ukuran responsif -->
+    <div class="my-2 sm:my-4 text-[10px] sm:text-xs text-indigo-300 text-center px-4 shrink-0">
+        *Mainkan dengan mouse (geser) atau sentuh layar di HP.
     </div>
 
     <script>
